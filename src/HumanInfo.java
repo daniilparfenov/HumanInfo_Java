@@ -29,6 +29,9 @@ public class HumanInfo {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             this.dateOfBirth = LocalDate.parse(dateOfBirth, formatter);
+            if (this.dateOfBirth.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Вы еще не родились!");
+            }
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Дата рождения не соответствует формату: дд-мм-гггг");
         }
